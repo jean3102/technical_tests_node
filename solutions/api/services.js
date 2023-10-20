@@ -8,7 +8,7 @@ const createItems = (req, res) => {
 	const { content } = req.body;
 
 	if (content.trim().length === 0) {
-		return res.status(400).send('error');
+		return res.status(400).send('No content received in the request');
 	}
 
 	const newId = Math.max(...items.map((item) => item.id)) + 1; //  get max id added and add 1
@@ -23,7 +23,7 @@ const deleteItems = (req, res) => {
 	const { id } = req.params;
 
 	if (!id) {
-		return res.status(400).send('error');
+		return res.status(400).send('The id is not received as a parameter');
 	}
 
 	const findElement = items.findIndex((item) => item.id === Number(id));
@@ -40,7 +40,7 @@ const updatedItems = (req, res) => {
 	const { content } = req.body;
 
 	if (!id || content.trim().length === 0) {
-		return res.status(400).send('error');
+		return res.status(400).send('No content and id received in the request');
 	}
 
 	const findElement = items.find((item) => item.id === Number(id));
